@@ -8,7 +8,7 @@ class ButtonEdit extends React.Component {
             : <button onClick={this.props.changeMode} id={"ButtonEdit"}>Перейти в режим редактирования</button>;
     }
 }
-class MarkerEdited extends React.Component {
+class MarkerEdited extends React.Component {//маркер
     constructor(props) {
         super(props);
         this.state = {
@@ -32,7 +32,7 @@ class MarkerEdited extends React.Component {
         this.props.changeMarker({ position: this.state.position, name: this.props.name, description: this.props.description }, this.props.id);
     }
     render(props) {
-        return this.props.mode
+        return this.props.mode//выбор режима
             ? <Marker radius={22} position={[this.state.position.lat, this.state.position.lng]} draggable={true} onDragend={this.updatePosition}>
                   <Popup minWidth={90}>
                       <span onClick={this.toggleDraggable}>
@@ -88,16 +88,16 @@ export default class App extends React.Component {
             }
         });
     }
-    changeMarker(event, id) {
+    changeMarker(event, id) {//изменение маркеров
         var arrayMarker = JSON.parse(localStorage.getItem("arrayMarker"));
         arrayMarker[id] = event;
         localStorage.setItem("arrayMarker", JSON.stringify(arrayMarker));
     }
-    changeMode() {
+    changeMode() {//изменение режима
         this.setState({ mode: !this.state.mode });
     }
 
-    arrayMarker() {
+    arrayMarker() {//добавление массива маркеров из localstorage
         let ar = [];
         var arrayMarker = JSON.parse(localStorage.getItem("arrayMarker"));
         let leng;
